@@ -1,0 +1,42 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/Index.php
+app/controllers/Login.php
+app/controllers/Package.php
+app/controllers/Register.php
+app/controllers/ResetPassword.php
+app/controllers/admin/AdminPageCreate.php
+app/controllers/admin/AdminPageUpdate.php
+app/controllers/admin/AdminSettings.php
+app/helpers/Date.php
+app/includes/product.php
+app/includes/simple_user_package_settings.php
+app/languages/english.json
+themes/altum/assets/css/admin-bootstrap-dark.min.css
+themes/altum/assets/css/admin-bootstrap.min.css
+themes/altum/views/account-package/index.php
+themes/altum/views/admin/page-create/index.php
+themes/altum/views/admin/page-update/index.php
+themes/altum/views/admin/pages-category-create/index.php
+themes/altum/views/admin/pages-category-update/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link_twitch.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/mail_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/partials/email.html
+themes/altum/views/partials/packages.php

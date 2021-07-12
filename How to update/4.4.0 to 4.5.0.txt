@@ -1,0 +1,47 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. 
+
+I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+- Create a new folder named "cache" in the "uploads" folder and give it 777 chmod permissions.
+
+- Replace the whole "vendor" folder
+
+- Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table users add country varchar(32) default '' not null;
+alter table payments add code varchar(32) null after plan;
+INSERT INTO `settings` (`key`, `value`) VALUES ('license', '');
+create index links_subtype_index on links (subtype);
+create index links_type_index on links (type);
+create index domains_host_index on domains (host);
+create index domains_type_index on domains (type);
+alter table users drop column instagram_id;
+--------
+
+
+LICENSE KEY
+--------------------
+As per this update, you must insert your license key in the Admin panel -> Website settings -> License tab.
+
+All the people who purchased the product previous to 24 August, 2019 will still be able to use the Payment system if they have the regular license as this was the offer back then.
+
+From 24 August, 2019, it was specifically written that you must own the Extended license in order to use the payment system. 
+
+Everyone had a notice besides the Payment system that you must own the extended license in order to run the Payment system. Right now, this is enforced, instead of a simple notice, which some people simply ignored.

@@ -1,0 +1,181 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+
+app/controllers/Account.php
+app/controllers/AccountLogs.php
+app/controllers/AccountPackage.php
+app/controllers/AccountPayments.php
+app/controllers/Dashboard.php
+app/controllers/Index.php
+app/controllers/Invoice.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Login.php
+app/controllers/LostPassword.php
+app/controllers/NotFound.php
+app/controllers/Package.php
+app/controllers/Page.php
+app/controllers/Pages.php
+app/controllers/Pay.php
+app/controllers/Project.php
+app/controllers/Register.php
+app/controllers/ResendActivation.php
+app/controllers/ResetPassword.php
+app/controllers/Sitemap.php
+app/controllers/WebhookPaypal.php
+app/controllers/WebhookStripe.php
+app/controllers/admin/AdminDomainCreate.php
+app/controllers/admin/AdminDomainUpdate.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminIndex.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPackageCreate.php
+app/controllers/admin/AdminPackageUpdate.php
+app/controllers/admin/AdminPackages.php
+app/controllers/admin/AdminPageCreate.php
+app/controllers/admin/AdminPageUpdate.php
+app/controllers/admin/AdminPages.php
+app/controllers/admin/AdminPagesCategories.php
+app/controllers/admin/AdminPagesCategoryCreate.php
+app/controllers/admin/AdminPagesCategoryUpdate.php
+app/controllers/admin/AdminPayments.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminStatistics.php
+app/controllers/admin/AdminUserCreate.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/admin/AdminUserView.php
+app/controllers/admin/AdminUsers.php
+app/controllers/link/Link.php
+app/core/App.php
+app/core/Controller.php
+app/core/Router.php
+app/helpers/Date.php
+app/helpers/email.php
+app/helpers/links.php
+app/helpers/others.php
+app/helpers/strings.php
+app/includes/datepicker_translations.php
+app/includes/product.php
+app/languages/english.json
+app/middlewares/Authentication.php
+app/models/Page.php
+themes/altum/assets/css/admin-custom.css
+themes/altum/assets/css/bootstrap.min.css
+themes/altum/assets/css/bootstrap.min.css.map
+themes/altum/assets/css/custom.css
+themes/altum/assets/css/datatables.min.css
+themes/altum/assets/js/libraries/datatables.min.js
+themes/altum/views/account-logs/index.php
+themes/altum/views/account-package/index.php
+themes/altum/views/account-payments/index.php
+themes/altum/views/account/index.php
+themes/altum/views/admin/domain-create/index.php
+themes/altum/views/admin/domain-update/index.php
+themes/altum/views/admin/domains/index.php
+themes/altum/views/admin/index/index.php
+themes/altum/views/admin/links/index.php
+themes/altum/views/admin/package-create/index.php
+themes/altum/views/admin/package-update/index.php
+themes/altum/views/admin/packages/index.php
+themes/altum/views/admin/page-create/index.php
+themes/altum/views/admin/page-update/index.php
+themes/altum/views/admin/pages-category-create/index.php
+themes/altum/views/admin/pages-category-update/index.php
+themes/altum/views/admin/pages/index.php
+themes/altum/views/admin/pages/page_delete_modal.php
+themes/altum/views/admin/pages/pages_category_delete_modal.php
+themes/altum/views/admin/partials/admin_menu.php
+themes/altum/views/admin/partials/admin_sidebar.php
+themes/altum/views/admin/payments/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/user-create/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/user-view/index.php
+themes/altum/views/admin/users/index.php
+themes/altum/views/admin/users/user_login_modal.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/index/index.php
+themes/altum/views/invoice/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link.php
+themes/altum/views/link-path/wrapper.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/login/index.php
+themes/altum/views/lost-password/index.php
+themes/altum/views/package/index.php
+themes/altum/views/page/index.php
+themes/altum/views/pages/index.php
+themes/altum/views/pages/pages_category.php
+themes/altum/views/partials/account_header.php
+themes/altum/views/partials/footer.php
+themes/altum/views/partials/menu.php
+themes/altum/views/pay/index.php
+themes/altum/views/project/index.php
+themes/altum/views/register/index.php
+themes/altum/views/resend-activation/index.php
+themes/altum/views/reset-password/index.php
+themes/altum/views/sitemap/index.php
+
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+update settings set `key` = 'default_timezone' WHERE `key` = 'time_zone';
+alter table users add timezone varchar(16) default 'UTC';
+alter table users modify timezone varchar(32) default 'UTC' null;
+
+alter table pages modify type varchar(16) collate utf8_unicode_ci default '' null;
+alter table pages modify position varchar(16) default '' not null;
+UPDATE pages SET type = LOWER(type);
+UPDATE pages SET position = 'top' WHERE position = '1';
+UPDATE pages SET position = 'bottom' WHERE position = '0';
+CREATE TABLE `pages_categories` (
+  `pages_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `icon` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`pages_category_id`),
+  KEY `url` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+alter table pages add pages_category_id int null after page_id;
+create index pages_pages_category_id_index on pages (pages_category_id);
+create index pages_url_index on pages (url);
+alter table pages add constraint pages_pages_categories_pages_category_id_fk foreign key (pages_category_id) references pages_categories (pages_category_id) on update cascade on delete cascade;
+alter table pages add `order` int default 0 null;
+alter table pages add total_views int default 0 null;
+alter table pages modify title varchar(64) default '' not null after url;
+alter table pages change description content text null;
+alter table pages add description varchar(128) null after title;
+alter table pages add date datetime null;
+alter table pages add last_date datetime null;
+update pages set date = now(), last_date = now();
+create index track_links_date_index on track_links (date);
+--------

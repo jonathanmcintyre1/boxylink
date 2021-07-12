@@ -1,0 +1,31 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+themes/altum/views/link-path/ - WHOLE FOLDER
+themes/altum/views/link/settings/ - WHOLE FOLDER
+app/controllers/Domains.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/admin/AdminPlanCreate.php
+app/controllers/admin/AdminPlanUpdate.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/link/Link.php
+app/includes/biolink_blocks.php
+app/includes/product.php
+app/includes/simple_user_plan_settings.php
+app/languages/english.json
+themes/altum/views/admin/plan-create/index.php
+themes/altum/views/admin/plan-update/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/partials/plan_features.php
+themes/altum/views/partials/plans.php

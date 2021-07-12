@@ -1,0 +1,43 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+
+app/controllers/LinkAjax.php
+app/controllers/Pay.php
+app/controllers/Project.php
+app/controllers/WebhookPaypal.php
+app/controllers/WebhookStripe.php
+app/controllers/admin/AdminSettings.php
+app/core/App.php
+app/core/Router.php
+app/helpers/email.php
+app/helpers/links.php
+app/includes/product.php
+themes/altum/views/admin/domains/index.php
+themes/altum/views/admin/links/index.php
+themes/altum/views/admin/payments/index.php
+themes/altum/views/admin/users/index.php
+themes/altum/views/project/index.php
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+alter table links alter column domain_id set default 0;
+UPDATE links SET domain_id = 0 WHERE domain_id IS NULL;

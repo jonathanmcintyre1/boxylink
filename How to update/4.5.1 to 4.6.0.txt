@@ -1,0 +1,142 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+vendor/ - REPLACE WHOLE FOLDER
+app/controllers/Account.php
+app/controllers/Dashboard.php
+app/controllers/Domains.php
+app/controllers/Index.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Login.php
+app/controllers/LostPassword.php
+app/controllers/Project.php
+app/controllers/ProjectAjax.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminIndex.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPackageCreate.php
+app/controllers/admin/AdminPackageUpdate.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/admin/AdminUserView.php
+app/controllers/link/Link.php
+app/core/App.php
+app/core/Router.php
+app/helpers/Cache.php
+app/helpers/Captcha.php
+app/helpers/Link.php
+app/helpers/ThemeStyle.php
+app/helpers/others.php
+app/includes/admin_socials.php
+app/includes/biolink_link_types.php
+app/includes/biolink_socials.php
+app/includes/product.php
+app/init.php
+app/languages/english.json
+themes/altum/assets/css/admin-custom.css
+themes/altum/assets/css/bootstrap-dark.min.css
+themes/altum/assets/css/bootstrap-dark.min.css.map
+themes/altum/assets/css/bootstrap.min.css
+themes/altum/assets/css/bootstrap.min.css.map
+themes/altum/assets/css/custom.css
+themes/altum/assets/css/datepicker.min.css
+themes/altum/assets/css/link-custom.css
+themes/altum/assets/images/avatar_default.png
+themes/altum/assets/images/no_data.svg
+themes/altum/assets/images/unlock.svg
+themes/altum/assets/js/functions.js
+themes/altum/views/account-logs/index.php
+themes/altum/views/account-package/index.php
+themes/altum/views/account-payments/index.php
+themes/altum/views/account/index.php
+themes/altum/views/admin/domain-create/index.php
+themes/altum/views/admin/domain-update/index.php
+themes/altum/views/admin/index/index.php
+themes/altum/views/admin/package-create/index.php
+themes/altum/views/admin/package-update/index.php
+themes/altum/views/admin/partials/admin_sidebar.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/basic_wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/domains/domain_create_modal.php
+themes/altum/views/domains/domain_delete_modal.php
+themes/altum/views/domains/domain_update_modal.php
+themes/altum/views/domains/index.php
+themes/altum/views/index/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link_text.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/create_link_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_soundcloud_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_spotify_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_text_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_tiktok_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_twitch_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_vimeo_modal.settings.biolink.method.php
+themes/altum/views/link/settings/create_youtube_modal.settings.biolink.method.php
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/mail_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+themes/altum/views/link/settings/soundcloud_form.settings.biolink.method.php
+themes/altum/views/link/settings/spotify_form.settings.biolink.method.php
+themes/altum/views/link/settings/text_form.settings.biolink.method.php
+themes/altum/views/link/settings/tiktok_form.settings.biolink.method.php
+themes/altum/views/link/settings/twitch_form.settings.biolink.method.php
+themes/altum/views/link/settings/vimeo_form.settings.biolink.method.php
+themes/altum/views/link/settings/youtube_form.settings.biolink.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/link/statistics/browserlanguages.statistics.method.php
+themes/altum/views/link/statistics/browsers.statistics.method.php
+themes/altum/views/link/statistics/countries.statistics.method.php
+themes/altum/views/link/statistics/devices.statistics.method.php
+themes/altum/views/link/statistics/lastactivity.statistics.method.php
+themes/altum/views/link/statistics/operatingsystems.statistics.method.php
+themes/altum/views/link/statistics/referrers.statistics.method.php
+themes/altum/views/login/index.php
+themes/altum/views/page/index.php
+themes/altum/views/partials/account_header.php
+themes/altum/views/partials/footer.php
+themes/altum/views/partials/menu.php
+themes/altum/views/partials/packages.php
+themes/altum/views/project/create_link_modals.php
+themes/altum/views/project/index.php
+themes/altum/views/project/project_create_modal.php
+themes/altum/views/project/project_delete_modal.php
+themes/altum/views/project/project_update_modal.php
+themes/altum/views/wrapper.php
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table track_links add device_type varchar(16) null after referer;
+alter table track_links add browser_language varchar(16) null;
+alter table track_links change referer referrer varchar(512) null;
+alter table track_links change location country_code varchar(8) null;
+alter table track_links change os os_name varchar(16) null;
+alter table track_links change browser browser_name varchar(32) null;
+
+alter table users add twofa_secret varchar(16) null after token_code;
+--------

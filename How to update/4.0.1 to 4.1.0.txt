@@ -1,0 +1,90 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/Index.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Package.php
+app/controllers/admin/AdminPackageCreate.php
+app/controllers/admin/AdminPackageUpdate.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/link/Link.php
+app/helpers/Link.php
+app/helpers/links.php
+app/helpers/others.php
+app/helpers/strings.php
+app/includes/product.php
+app/languages/english.json
+themes/altum/assets/css/bootstrap-iconpicker.min.css
+themes/altum/assets/css/fontawesome.min.css
+themes/altum/assets/css/link-custom.css
+themes/altum/assets/js/libraries/bootstrap-iconpicker.min.js
+themes/altum/assets/js/libraries/fontawesome.min.js
+themes/altum/views/account-details/index.php
+themes/altum/views/account/index.php
+themes/altum/views/admin/package-create/index.php
+themes/altum/views/admin/package-update/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link_soundcloud.php
+themes/altum/views/link-path/partials/biolink_link_spotify.php
+themes/altum/views/link-path/partials/biolink_link_twitch.php
+themes/altum/views/link-path/partials/biolink_link_vimeo.php
+themes/altum/views/link-path/partials/biolink_link_youtube.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/create_spotify_modal.settings.biolink.method.php
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+themes/altum/views/link/settings/spotify_form.settings.biolink.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/login/index.php
+themes/altum/views/lost-password/index.php
+themes/altum/views/notfound/index.php
+themes/altum/views/package/index.php
+themes/altum/views/page/index.php
+themes/altum/views/pay/index.php
+themes/altum/views/project/index.php
+themes/altum/views/register/index.php
+themes/altum/views/resend-activation/index.php
+themes/altum/views/reset-password/index.php
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql query.
+
+
+INSERT INTO `settings` (`key`, `value`)
+VALUES ('links', '{\"blacklisted_domains\":[],\"phishtank_is_enabled\":\"0\",\"phishtank_api_key\":\"\"}');
+
+
+
+UPDATE PACKAGES 
+--------------------
+
+1. login to the Admin Panel
+2. go to Packages page
+3. update the package settings as you wish and save it
+4. update the subscribers of the package by clicking the 'update' of the 'Update Package Subscribers' heading on the Packge Update page.
+
+Repeat for all the packages so that you have all the new proper settings for each package you created.

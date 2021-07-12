@@ -1,0 +1,73 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+All the files have been changed as this is a massive update.
+
+- Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+- Delete the uploads/cache/biolinks folder
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table users add pending_email varchar(128) null after twofa_secret;
+alter table packages add taxes_ids text null after settings;
+alter table users add billing text null after name;
+alter table packages change package_id plan_id int auto_increment;
+rename table packages to plans;
+UPDATE settings SET `key` = 'plan_custom' WHERE `key` = 'package_custom';
+UPDATE settings SET `key` = 'plan_trial' WHERE `key` = 'package_trial';
+UPDATE settings SET `key` = 'plan_free' WHERE `key` = 'package_free';
+alter table users change package_id plan_id varchar(16) collate utf8_unicode_ci default '' not null;
+alter table users change package_expiration_date plan_expiration_date datetime null;
+alter table users change package_settings plan_settings text collate utf8_unicode_ci null;
+alter table users change package_trial_done plan_trial_done tinyint default 0 null;
+UPDATE `settings` SET `value` = REPLACE(`value`,'package_id','plan_id') WHERE `key` = 'plan_free';
+UPDATE `settings` SET `value` = REPLACE(`value`,'package_id','plan_id') WHERE `key` = 'plan_trial';
+UPDATE `settings` SET `value` = REPLACE(`value`,'package_id','plan_id') WHERE `key` = 'plan_custom';
+alter table domains add is_enabled tinyint default 0 null after type;
+update domains set is_enabled = 1;
+
+--------
+
+
+COPY & RUN THE FOLLOWING QUERIES ONLY IF YOU HAVE THE EXTENDED LICENSE
+--------
+alter table payments modify user_id int null;
+alter table payments add billing text null after name;
+alter table payments add taxes_ids text null after billing;
+alter table payments add base_amount float null after package_id;
+alter table payments add discount_amount float null after code;
+alter table payments change amount total_amount float null;
+CREATE TABLE `taxes` (
+`tax_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`internal_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`description` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`value` int(11) DEFAULT NULL,
+`value_type` enum('percentage','fixed') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`type` enum('inclusive','exclusive') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`billing_type` enum('personal','business','both') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`countries` text COLLATE utf8mb4_unicode_ci,
+`datetime` datetime DEFAULT NULL,
+PRIMARY KEY (`tax_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+alter table payments change package_id plan_id int null;
+alter table codes change package_id plan_id int(16) null;
+
+--------
+
+
