@@ -1,0 +1,13 @@
+{
+    "plugin_id": "pro-blocks",
+    "name": "Pro Blocks",
+    "description": "The Pro Blocks plugin is meant to give you +10 extra new biolink blocks.",
+    "version": "1.0.0",
+    "url": "https://altumco.de/phpbiolinks-pro-blocks",
+    "author": "AltumCode",
+    "author_url": "https:\/\/altumcode.com\/",
+    "status": -2,
+    "actions": true,
+    "avatar_style": "background: #1AC8E2;\nbackground: -webkit-linear-gradient(top right, #1AC8E2, #08BB87);\nbackground: -moz-linear-gradient(top right, #1AC8E2, #08BB87);\nbackground: linear-gradient(to bottom left, #1AC8E2, #08BB87);",
+    "icon": "⚡️"
+}
