@@ -1,0 +1,36 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+This is a major update regarding files, all of them have been changed.
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table domains add custom_not_found_url varchar(256) null after custom_index_url;
+alter table domains change date datetime datetime null;
+alter table domains add last_datetime datetime null;
+alter table projects add last_datetime datetime null after name;
+alter table projects change date datetime datetime not null;
+INSERT INTO `settings` (`key`, `value`) VALUES ('announcements', '{"id":"","content":"","show_logged_in":"","show_logged_out":""}');
+alter table projects add color varchar(16) default '#000' null;
+--------
+
+
+Go to your /uploads/cache/ folder and delete the folder that you find inside.
+

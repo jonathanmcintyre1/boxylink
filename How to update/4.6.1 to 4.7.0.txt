@@ -1,0 +1,146 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+vendor/ - REPLACE THE WHOLE FOLDER
+app/controllers/Account.php
+app/controllers/AccountPackage.php
+app/controllers/Domains.php
+app/controllers/Index.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Login.php
+app/controllers/Package.php
+app/controllers/Pay.php
+app/controllers/Project.php
+app/controllers/Register.php
+app/controllers/WebhookStripe.php
+app/controllers/admin/AdminCodeCreate.php
+app/controllers/admin/AdminCodeUpdate.php
+app/controllers/admin/AdminDomainCreate.php
+app/controllers/admin/AdminDomainUpdate.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPackageCreate.php
+app/controllers/admin/AdminPackageUpdate.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminStatistics.php
+app/controllers/admin/AdminUserCreate.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/link/Link.php
+app/core/App.php
+app/helpers/Date.php
+app/helpers/Link.php
+app/helpers/email.php
+app/helpers/others.php
+app/includes/product.php
+app/languages/english.json
+app/models/Domain.php
+themes/altum/assets/css/admin-bootstrap-dark.min.css
+themes/altum/assets/css/admin-bootstrap.min.css
+themes/altum/assets/css/admin-custom.css
+themes/altum/assets/css/bootstrap-dark.min.css
+themes/altum/assets/css/bootstrap-dark.min.css.map
+themes/altum/assets/css/bootstrap.min.css
+themes/altum/assets/css/bootstrap.min.css.map
+themes/altum/assets/css/custom.css
+themes/altum/assets/images/altumcode.png
+themes/altum/assets/js/libraries/bootstrap.min.js
+themes/altum/assets/js/libraries/bootstrap.min.js.map
+themes/altum/assets/js/libraries/fontawesome.min.js
+themes/altum/assets/js/libraries/pickr.min.js
+themes/altum/assets/js/libraries/popper.min.js
+themes/altum/views/account-package/index.php
+themes/altum/views/admin/code-create/index.php
+themes/altum/views/admin/code-update/index.php
+themes/altum/views/admin/codes/code_delete_modal.php
+themes/altum/views/admin/codes/index.php
+themes/altum/views/admin/domain-create/index.php
+themes/altum/views/admin/domain-update/index.php
+themes/altum/views/admin/domains/index.php
+themes/altum/views/admin/index/index.php
+themes/altum/views/admin/links/index.php
+themes/altum/views/admin/package-create/index.php
+themes/altum/views/admin/package-update/index.php
+themes/altum/views/admin/packages/index.php
+themes/altum/views/admin/page-create/index.php
+themes/altum/views/admin/page-update/index.php
+themes/altum/views/admin/pages-category-create/index.php
+themes/altum/views/admin/pages-category-update/index.php
+themes/altum/views/admin/pages/index.php
+themes/altum/views/admin/pages/page_delete_modal.php
+themes/altum/views/admin/pages/pages_category_delete_modal.php
+themes/altum/views/admin/partials/admin_sidebar.php
+themes/altum/views/admin/partials/footer.php
+themes/altum/views/admin/payments/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/statistics/partials/growth.php
+themes/altum/views/admin/statistics/partials/links.php
+themes/altum/views/admin/statistics/partials/payments.php
+themes/altum/views/admin/user-create/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/user-view/index.php
+themes/altum/views/admin/users/index.php
+themes/altum/views/admin/users/user_login_modal.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/domains/domain_create_modal.php
+themes/altum/views/domains/domain_update_modal.php
+themes/altum/views/domains/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link.php
+themes/altum/views/link-path/partials/biolink_link_mail.php
+themes/altum/views/link-path/partials/biolink_link_soundcloud.php
+themes/altum/views/link-path/partials/biolink_link_spotify.php
+themes/altum/views/link-path/partials/biolink_link_text.php
+themes/altum/views/link-path/partials/biolink_link_tiktok.php
+themes/altum/views/link-path/partials/biolink_link_twitch.php
+themes/altum/views/link-path/partials/biolink_link_vimeo.php
+themes/altum/views/link-path/partials/biolink_link_youtube.php
+themes/altum/views/link-path/wrapper.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings/create_text_modal.settings.biolink.method.php
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+themes/altum/views/link/settings/text_form.settings.biolink.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/partials/account_header.php
+themes/altum/views/partials/ads_footer_biolink.php
+themes/altum/views/partials/ads_header_biolink.php
+themes/altum/views/partials/footer.php
+themes/altum/views/partials/menu.php
+themes/altum/views/partials/packages.php
+themes/altum/views/pay/index.php
+themes/altum/views/project/create_link_modals.php
+themes/altum/views/project/index.php
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+1. COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table packages change is_enabled status tinyint not null;
+UPDATE settings SET value = '{\"package_id\":\"custom\",\"name\":\"Custom\",\"status\":1}' WHERE `key` = 'package_custom';
+alter table domains modify user_id int null;
+UPDATE domains SET user_id = NULL WHERE type = 1;
+alter table domains add custom_index_url varchar(256) null after host;
+--------
+
+2. Go to the Packages page in the Admin panel and go through the all the packages and make sure to edit it and save it again with the new settings available. 

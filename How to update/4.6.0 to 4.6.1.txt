@@ -1,0 +1,37 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/AccountPackage.php
+app/controllers/LinkAjax.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminLinks.php
+app/controllers/link/Link.php
+app/helpers/Link.php
+app/includes/product.php
+app/languages/english.json
+themes/altum/assets/css/custom.css
+themes/altum/views/admin/settings/index.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/biolink_link.php
+themes/altum/views/link-path/partials/biolink_link_mail.php
+themes/altum/views/link-path/partials/biolink_link_soundcloud.php
+themes/altum/views/link-path/partials/biolink_link_spotify.php
+themes/altum/views/link-path/partials/biolink_link_text.php
+themes/altum/views/link-path/partials/biolink_link_tiktok.php
+themes/altum/views/link-path/partials/biolink_link_twitch.php
+themes/altum/views/link-path/partials/biolink_link_vimeo.php
+themes/altum/views/link-path/partials/biolink_link_youtube.php
+themes/altum/views/account-package/index.php
+themes/altum/views/partials/footer.php
+themes/altum/views/partials/packages.phpthemes/altum/views/partials/ads_footer_biolink.php
+themes/altum/views/partials/ads_header_biolink.php

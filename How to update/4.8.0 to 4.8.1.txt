@@ -1,0 +1,29 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/AccountPayments.php
+app/controllers/LinkAjax.php
+app/controllers/admin/AdminIndex.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPackageUpdate.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/admin/AdminUserView.php
+app/controllers/admin/AdminUsers.php
+app/includes/product.php
+app/languages/english.json
+app/models/User.php
+themes/altum/assets/css/link-custom.css
+themes/altum/views/admin/index/index.php
+themes/altum/views/admin/users/user_delete_modal.php
+themes/altum/views/partials/menu.php
+themes/altum/views/project/index.php

@@ -1,0 +1,62 @@
+<?php
+/*
+ * @copyright Copyright (c) 2021 AltumCode (https://altumcode.com/)
+ *
+ * This software is exclusively sold through https://altumcode.com/ by the AltumCode author.
+ * Downloading this product from any other sources and running it without a proper license is illegal,
+ *  except the official ones linked from https://altumcode.com/.
+ */
+
+namespace Altum\Models;
+
+class BiolinkBlock extends Model {
+
+    public function delete($biolink_block_id) {
+
+        if(!$biolink_block = db()->where('biolink_block_id', $biolink_block_id)->getOne('biolinks_blocks')) {
+            die();
+        }
+
+        $blocks_with_storage = [
+            'image' => ['path' => 'block_images', 'uploaded_file_key' => 'image'],
+            'image_grid' => ['path' => 'block_images', 'uploaded_file_key' => 'image'],
+            'link' => ['path' => 'block_thumbnail_images', 'uploaded_file_key' => 'image'],
+            'mail' => ['path' => 'block_thumbnail_images', 'uploaded_file_key' => 'image'],
+            'vcard' => ['path' => 'block_thumbnail_images', 'uploaded_file_key' => 'image'],
+            'audio' => ['path' => 'files', 'uploaded_file_key' => 'file'],
+            'video' => ['path' => 'files', 'uploaded_file_key' => 'file'],
+            'file' => ['path' => 'files', 'uploaded_file_key' => 'file'],
+            'avatar' => ['path' => 'avatars', 'uploaded_file_key' => 'image'],
+        ];
+
+        if(array_key_exists($biolink_block->type, $blocks_with_storage)) {
+            $block_with_storage = $blocks_with_storage[$biolink_block->type];
+            $biolink_block->settings = json_decode($biolink_block->settings);
+
+            /* Offload deleting */
+            if(\Altum\Plugin::is_active('offload') && settings()->offload->uploads_url) {
+                $s3 = new \Aws\S3\S3Client(get_aws_s3_config());
+                $s3->deleteObject([
+                    'Bucket' => settings()->offload->storage_name,
+                    'Key' => 'uploads/' . $block_with_storage['path'] . '/' . $biolink_block->settings->{$block_with_storage['uploaded_file_key']},
+                ]);
+            }
+
+            /* Local deleting */
+            else {
+                /* Delete current file */
+                if(!empty($biolink_block->settings->{$block_with_storage['uploaded_file_key']}) && file_exists(UPLOADS_PATH . $block_with_storage['path'] . '/' . $biolink_block->settings->{$block_with_storage['uploaded_file_key']})) {
+                    unlink(UPLOADS_PATH . $block_with_storage['path'] . '/' . $biolink_block->settings->{$block_with_storage['uploaded_file_key']});
+                }
+            }
+        }
+
+        /* Delete from database */
+        db()->where('biolink_block_id', $biolink_block_id)->delete('biolinks_blocks');
+
+        /* Clear the cache */
+        \Altum\Cache::$adapter->deleteItemsByTag('biolinks_links_user_' . $biolink_block->user_id);
+        \Altum\Cache::$adapter->deleteItemsByTag('link_id=' . $biolink_block->link_id);
+
+    }
+}

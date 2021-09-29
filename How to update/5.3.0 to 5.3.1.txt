@@ -1,0 +1,22 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+app/helpers/Date.php
+app/helpers/Link.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/project/index.php
+app/includes/product.php

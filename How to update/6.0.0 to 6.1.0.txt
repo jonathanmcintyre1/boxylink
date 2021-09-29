@@ -1,0 +1,56 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/ActivateUser.php
+app/controllers/Login.php
+app/controllers/Register.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPayments.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminUsers.php
+app/helpers/others.php
+app/includes/product.php
+app/languages/english.json
+app/models/User.php
+themes/altum/assets/css/custom.css
+themes/altum/assets/js/chartjs_defaults.js
+themes/altum/views/admin/code-create/index.php
+themes/altum/views/admin/code-update/index.php
+themes/altum/views/admin/page-create/index.php
+themes/altum/views/admin/page-update/index.php
+themes/altum/views/admin/pages/index.php
+themes/altum/views/admin/payments/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/user-view/index.php
+themes/altum/views/admin/users/index.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/link/statistics.php
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table users add one_time_login_code varchar(32) null after twofa_secret;
+INSERT INTO `settings` (`key`, `value`) VALUES ('webhooks', '{"user_new":"","user_delete":""}');
+--------

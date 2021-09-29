@@ -1,0 +1,20 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/Links.php
+app/controllers/l/Link.php
+themes/altum/views/admin/settings/index.php
+app/controllers/Index.php
+app/core/Router.php
+themes/altum/views/index/index.php
+app/controllers/admin/AdminPayments.php

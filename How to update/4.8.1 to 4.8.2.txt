@@ -1,0 +1,52 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. Copy/Paste the following files, replace if needed.
+
+app/controllers/Login.php
+app/controllers/WebhookStripe.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminSettings.php
+app/controllers/link/Link.php
+app/helpers/notifications.php
+app/helpers/others.php
+app/includes/product.php
+app/init.php
+app/languages/english.json
+themes/altum/assets/css/admin-custom.css
+themes/altum/assets/css/custom.css
+themes/altum/assets/images/countries/
+themes/altum/assets/js/main.js
+themes/altum/views/account/index.php
+themes/altum/views/admin/code-create/index.php
+themes/altum/views/admin/code-update/index.php
+themes/altum/views/admin/package-create/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/domains/index.php
+themes/altum/views/invoice/index.php
+themes/altum/views/link-path/wrapper.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/statistics/countries.statistics.method.php
+themes/altum/views/link/statistics/lastactivity.statistics.method.php
+themes/altum/views/link/statistics/referrers.statistics.method.php
+themes/altum/views/partials/footer.php
+themes/altum/views/partials/menu.php
+themes/altum/views/partials/packages.php
+themes/altum/views/project/index.php
+
+2. 
+
+- Make sure to copy the old, already existing /app/config/config.php file.
+- Paste it in the / folder, where the index.php file and app, uploads, themes folders are.
+
+
+2. If you are an Extended license holder:
+
+- Go to https://socialproofo.com/docs/#stripe
+- Update your Stripe Webhook with the latest events
+- Update your API version to the latest one from 2020-08-27

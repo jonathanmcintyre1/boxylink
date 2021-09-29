@@ -1,0 +1,89 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+
+app/controllers/AccountPayments.php
+app/controllers/Cron.php
+app/controllers/Dashboard.php
+app/controllers/LinkAjax.php
+app/controllers/Login.php
+app/controllers/Pay.php
+app/controllers/Project.php
+app/controllers/Register.php
+app/controllers/WebhookPaypal.php
+app/controllers/WebhookStripe.php
+app/controllers/admin/AdminCodes.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPages.php
+app/controllers/admin/AdminPagesCategories.php
+app/controllers/admin/AdminPayments.php
+app/controllers/admin/AdminPlans.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminTaxes.php
+app/controllers/admin/AdminUsers.php
+app/core/App.php
+app/core/Controller.php
+app/core/Router.php
+app/helpers/Date.php
+app/helpers/Filters.php
+app/helpers/ThemeStyle.php
+app/helpers/notifications.php
+app/includes/product.php
+app/init.php
+app/languages/english.json
+themes/altum/assets/css/animate.min.css
+themes/altum/assets/css/custom.css
+themes/altum/assets/js/functions.js
+themes/altum/assets/js/libraries/moment-timezone-with-data-10-year-range.min.js
+themes/altum/assets/js/main.js
+themes/altum/views/account-payments/index.php
+themes/altum/views/admin/plan-create/index.php
+themes/altum/views/admin/plan-update/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/basic_wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/invoice/invoice_wrapper.php
+themes/altum/views/link-path/partials/biolink.php
+themes/altum/views/link-path/partials/password.php
+themes/altum/views/link-path/partials/sensitive_content.php
+themes/altum/views/link-path/wrapper.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/partials/js_global_variables.php
+themes/altum/views/project/index.php
+themes/altum/views/register/index.php
+themes/altum/views/wrapper.php
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+INSERT INTO `settings` (`key`, `value`) VALUES ('default_theme_style', 'light');
+--------
+
+Go to your /uploads/cache/ folder and delete the folder that you find inside.
+

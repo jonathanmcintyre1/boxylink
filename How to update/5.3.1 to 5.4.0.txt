@@ -1,0 +1,38 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+vendor/ - whole folder
+themes/altum/views/link-path/ - whole folder
+themes/altum/views/link/ -whole folder
+
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Pay.php
+app/controllers/WebhookPaypal.php
+app/controllers/admin/AdminSettings.php
+app/helpers/Date.php
+app/helpers/Link.php
+app/helpers/email.php
+app/helpers/links.php
+app/includes/product.php
+app/languages/english.json
+themes/altum/assets/css/link-custom.css
+themes/altum/views/admin/settings/index.php
+themes/altum/views/domains/domain_create_modal.php
+themes/altum/views/domains/domain_update_modal.php
+themes/altum/views/partials/email.html
+themes/altum/views/partials/plans.php
+themes/altum/views/pay/index.php
+themes/altum/views/project/create_link_modals.php
+themes/altum/views/project/project_create_modal.php
+themes/altum/views/project/project_update_modal.php

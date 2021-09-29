@@ -1,0 +1,70 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+THIS UPDATE IS NOW REQUIRING PHP VERSION PHP 7.4 TO BEST FUNCTION WITH ALL THE UPDATED DEPENDENCIES!
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+vendor/
+app/controllers/admin/AdminPlanCreate.php
+app/controllers/admin/AdminPlanUpdate.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminUserUpdate.php
+app/controllers/Invoice.php
+app/controllers/link/Link.php
+app/controllers/LinkAjax.php
+app/core/App.php
+app/core/Meta.php
+app/helpers/Link.php
+app/helpers/others.php
+app/includes/biolink_link_types.php
+app/includes/daterangepicker_translations.php
+app/includes/product.php
+app/includes/simple_user_plan_settings.php
+app/init.php
+app/languages/english.json
+app/models/Page.php
+themes/altum/assets/css/admin-bootstrap-dark.min.css
+themes/altum/assets/css/admin-bootstrap.min.css
+themes/altum/assets/css/daterangepicker.min.css
+themes/altum/assets/js/libraries/daterangepicker.min.js
+themes/altum/assets/js/libraries/moment.min.js
+themes/altum/views/account/index.php
+themes/altum/views/admin/index/index.php
+themes/altum/views/admin/page-update/index.php
+themes/altum/views/admin/partials/footer.php
+themes/altum/views/admin/plan-create/index.php
+themes/altum/views/admin/plan-update/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/statistics/partials/growth.php
+themes/altum/views/admin/statistics/partials/links.php
+themes/altum/views/admin/statistics/partials/payments.php
+themes/altum/views/admin/tax-create/index.php
+themes/altum/views/admin/tax-update/index.php
+themes/altum/views/admin/user-update/index.php
+themes/altum/views/basic_wrapper.php
+themes/altum/views/link-path/partials/biolink_link_image.php
+themes/altum/views/link/index.php
+themes/altum/views/link/settings.method.php
+themes/altum/views/link/settings/create_image_modal.settings.biolink.method.php
+themes/altum/views/link/settings/image_form.settings.biolink.method.php
+themes/altum/views/link/settings/link_form.settings.biolink.method.php
+themes/altum/views/link/settings/mail_form.settings.biolink.method.php
+themes/altum/views/link/settings/settings.biolink.method.php
+themes/altum/views/link/settings/settings.link.method.php
+themes/altum/views/link/statistics.method.php
+themes/altum/views/link/statistics/browserlanguages.statistics.method.php
+themes/altum/views/link/statistics/lastactivity.statistics.method.php
+themes/altum/views/partials/account_header.php
+themes/altum/views/project/create_link_modals.php
+themes/altum/views/wrapper.php

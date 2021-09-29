@@ -1,0 +1,98 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+This is a major update regarding files, all of them have been changed.
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+
+CREATE TABLE `biolinks_blocks` (
+                                   `biolink_block_id` int(11) NOT NULL AUTO_INCREMENT,
+                                   `user_id` int(11) NOT NULL,
+                                   `link_id` int(11) DEFAULT NULL,
+                                   `type` varchar(32) NOT NULL DEFAULT '',
+                                   `location_url` varchar(512) DEFAULT NULL,
+                                   `clicks` int(11) NOT NULL DEFAULT '0',
+                                   `settings` text,
+                                   `order` int(11) NOT NULL DEFAULT '0',
+                                   `start_date` datetime DEFAULT NULL,
+                                   `end_date` datetime DEFAULT NULL,
+                                   `is_enabled` tinyint(4) NOT NULL DEFAULT '1',
+                                   `datetime` datetime NOT NULL,
+                                   PRIMARY KEY (`biolink_block_id`),
+                                   KEY `user_id` (`user_id`),
+                                   KEY `links_type_index` (`type`),
+                                   KEY `links_links_link_id_fk` (`link_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `biolinks_blocks`
+(`user_id`, `link_id`, `type`, `location_url`, `clicks`, `settings`, `order`, `start_date`, `end_date`, `is_enabled`, `datetime`)
+SELECT
+    `user_id`, `biolink_id`, `subtype`, `location_url`, `clicks`, `settings`, `order`, `start_date`, `end_date`, `is_enabled`, `date`
+FROM `links` WHERE `biolink_id` IS NOT NULL;
+
+DELETE FROM `links` WHERE `biolink_id` IS NOT NULL;
+
+alter table biolinks_blocks
+    add constraint biolinks_blocks_links_link_id_fk
+        foreign key (link_id) references links (link_id)
+            on update cascade on delete cascade;
+
+alter table biolinks_blocks
+    add constraint biolinks_blocks_users_user_id_fk
+        foreign key (user_id) references users (user_id)
+            on update cascade on delete cascade;
+
+
+alter table track_links modify link_id int null;
+
+alter table track_links add biolink_block_id int null after link_id;
+
+create index track_links_biolink_block_id_index on track_links (biolink_block_id);
+
+alter table track_links add constraint track_links_biolinks_blocks_biolink_block_id_fk foreign key (biolink_block_id) references biolinks_blocks (biolink_block_id) on update cascade on delete cascade;
+
+alter table links change date datetime datetime not null;
+
+alter table links drop column `order`;
+
+alter table links add pixels_ids text null after domain_id;
+
+CREATE TABLE `pixels` (
+                          `pixel_id` int(11) NOT NULL AUTO_INCREMENT,
+                          `user_id` int(11) NOT NULL,
+                          `type` varchar(64) NOT NULL,
+                          `name` varchar(64) NOT NULL,
+                          `pixel` varchar(64) NOT NULL,
+                          `last_datetime` datetime DEFAULT NULL,
+                          `datetime` datetime NOT NULL,
+                          PRIMARY KEY (`pixel_id`),
+                          KEY `user_id` (`user_id`),
+                          CONSTRAINT `pixels_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+--------
+
+
+Go to your /uploads/cache/ folder and delete the folder that you find inside.
+
+Go to your /uploads folder and create another folder named "opengraph" and set the CHMOD permissions to 777.
+

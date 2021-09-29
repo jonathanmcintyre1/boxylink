@@ -1,0 +1,52 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+All the files have been changed as this is a massive update.
+
+Replace all the folders / files except the "uploads" folder, "install" folder and the "app/config/config.php" file.
+
+uploads/offline_payment_proofs/ - Create folder and chmod 777
+
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table track_links add project_id int null after id;
+create index track_links_project_id_index on track_links (project_id);
+UPDATE IGNORE `track_links` JOIN `links` ON `track_links`.`link_id` = `links`.`link_id` SET `track_links`.`project_id` = `links`.`project_id`;
+alter table users modify country varchar(32) default null;
+alter table packages modify monthly_price float null;
+alter table packages modify annual_price float null;
+alter table packages add lifetime_price float null after annual_price;
+INSERT INTO `settings` (`key`, `value`) VALUES ('offline_payment', '{\"is_enabled\":\"0\",\"instructions\":\"Your offline payment instructions go here..\"}');
+--------
+
+
+COPY & RUN THE FOLLOWING QUERIES ONLY IF YOU HAVE THE EXTENDED LICENSE
+--------
+alter table payments modify processor varchar(16) null;
+alter table payments modify type varchar(16) null;
+alter table payments add status tinyint default 1 null after currency;
+UPDATE payments SET type = 'one_time' WHERE type = 'one-time';
+UPDATE payments SET type = 'recurring' WHERE type = 'RECURRING';
+alter table payments add payment_proof varchar(40) default null after currency;
+UPDATE payments SET processor = 'stripe' WHERE processor = 'STRIPE';
+UPDATE payments SET processor = 'paypal' WHERE processor = 'PAYPAL';
+alter table payments change plan frequency varchar(16) null;
+--------
+
+
+
+

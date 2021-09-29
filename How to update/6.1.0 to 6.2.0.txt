@@ -1,0 +1,120 @@
+IMPORTANT
+———————————————————
+Please make sure to always back up your files before updating. I am not responsible for any update going wrong and messing / losing your previous or actual files. 
+
+
+FILE CHANGES
+———————————————————
+1. THE EASIEST WAY
+Replace all the folders / files except the "uploads" folder, "install" folder and the "config.php" file.
+
+2. THE ADVANCED WAY
+Copy/Paste the following files, replace if needed.
+
+app/controllers/AccountLogs.php
+app/controllers/AccountPayments.php
+app/controllers/AccountPlan.php
+app/controllers/Dashboard.php
+app/controllers/Domains.php
+app/controllers/Link.php
+app/controllers/LinkAjax.php
+app/controllers/Links.php
+app/controllers/Login.php
+app/controllers/Projects.php
+app/controllers/Register.php
+app/controllers/admin-api/AdminApiUsers.php
+app/controllers/admin/AdminDomainCreate.php
+app/controllers/admin/AdminDomainUpdate.php
+app/controllers/admin/AdminDomains.php
+app/controllers/admin/AdminIndex.php
+app/controllers/admin/AdminLinks.php
+app/controllers/admin/AdminPageCreate.php
+app/controllers/admin/AdminPageUpdate.php
+app/controllers/admin/AdminPagesCategoryCreate.php
+app/controllers/admin/AdminPagesCategoryUpdate.php
+app/controllers/admin/AdminPayments.php
+app/controllers/admin/AdminSettings.php
+app/controllers/admin/AdminStatistics.php
+app/controllers/admin/AdminUserCreate.php
+app/controllers/admin/AdminUsers.php
+app/controllers/link/Link.php
+app/core/Language.php
+app/helpers/ - WHOLE FOLDER
+app/includes/ - WHOLE FOLDER
+app/init.php
+app/languages/english.json
+app/middlewares/Authentication.php
+app/models/User.php
+themes/altum/assets/css/admin-custom.css
+themes/altum/assets/css/bootstrap-dark.min.css
+themes/altum/assets/css/bootstrap.min.css
+themes/altum/assets/css/custom.css
+themes/altum/assets/images/no_rows.svg
+themes/altum/assets/js/admin_chartjs_defaults.js
+themes/altum/assets/js/chartjs_defaults.js
+themes/altum/assets/js/functions.js
+themes/altum/views/account-logs/index.php
+themes/altum/views/account-payments/index.php
+themes/altum/views/admin/domain-create/index.php
+themes/altum/views/admin/domain-update/index.php
+themes/altum/views/admin/domains/index.php
+themes/altum/views/admin/links/index.php
+themes/altum/views/admin/pages/index.php
+themes/altum/views/admin/payments/index.php
+themes/altum/views/admin/settings/index.php
+themes/altum/views/admin/statistics/index.php
+themes/altum/views/admin/users/index.php
+themes/altum/views/admin/wrapper.php
+themes/altum/views/dashboard/index.php
+themes/altum/views/domains/index.php
+themes/altum/views/link-path/- WHOLE FOLDER
+themes/altum/views/link/ - WHOLE FOLDER
+themes/altum/views/links/links_content.php
+themes/altum/views/login/index.php
+themes/altum/views/lost-password/index.php
+themes/altum/views/partials/footer.php
+themes/altum/views/projects/index.php
+themes/altum/views/register/index.php
+themes/altum/views/resend-activation/index.php
+themes/altum/views/reset-password/index.php
+uploads/block_thumbnail_images - CREATE FOLDER AND CHMOD 777
+uploads/block_images - CREATE FOLDER AND CHMOD 777
+
+DATABASE CHANGES 
+--------------------
+IMPORTANT: MAKE SURE YOU BACKUP YOUR DATABASE JUST TO BE SAFE. 
+
+You will have to run the following queries into your database. 
+
+You can run those with PhpMyAdmin -> selecting the database -> going to the SQL tab and running the following mysql queries:
+
+
+COPY & RUN THE FOLLOWING QUERIES
+--------
+alter table track_links drop column dynamic_id;
+
+alter table track_links drop column ip;
+
+alter table track_links drop column count;
+
+alter table track_links drop column last_date;
+
+alter table track_links change date datetime datetime not null;
+
+alter table track_links add is_unique tinyint default 0 null;
+
+alter table track_links add utm_source varchar(128) null;
+
+alter table track_links add utm_medium varchar(128) null;
+
+alter table track_links add utm_campaign varchar(128) null;
+
+alter table track_links add city_name varchar(128) null;
+
+alter table track_links drop column referrer;
+
+alter table track_links add referrer_path varchar(1024) null;
+
+alter table track_links add referrer_host varchar(256) null;
+
+--------
