@@ -11,7 +11,7 @@ if(file_exists(ROOT . 'install/installed')) {
 }
 
 /* Make sure all the required fields are present */
-$required_fields = ['license', 'database_host', 'database_name', 'database_username', 'database_password', 'url'];
+$required_fields = ['license_key', 'database_host', 'database_name', 'database_username', 'database_password', 'installation_url'];
 
 foreach($required_fields as $field) {
     if(!isset($_POST[$field])) {
@@ -39,19 +39,19 @@ if($database->connect_error) {
 
 /* Make sure the license is correct */
 $response = Unirest\Request::post($altumcode_api, [], [
-    'license'           => $_POST['license'],
-    'url'               => $_POST['url'],
+    'license'           => $_POST['license_key'],
+    'url'               => $_POST['installation_url'],
     'product_key'       => PRODUCT_KEY,
     'product_name'      => PRODUCT_NAME,
-    'product_version'   => '9.2.0',
-    'client_email'      => $_POST['client_email'],
-    'client_name'       => $_POST['client_name']
+    'product_version'   => '11.1.0',
+    'client_email'      => $_POST['newsletter_email'],
+    'client_name'       => $_POST['newsletter_name'],
 ]);
 
 
 
 /* Success check */
-if(true) {
+if($response->body->status == 'error') {
 
     /* Prepare the config file content */
     $config_content =
@@ -63,7 +63,7 @@ define('DATABASE_SERVER',   '{$_POST['database_host']}');
 define('DATABASE_USERNAME', '{$_POST['database_username']}');
 define('DATABASE_PASSWORD', '{$_POST['database_password']}');
 define('DATABASE_NAME',     '{$_POST['database_name']}');
-define('SITE_URL',          '{$_POST['url']}');
+define('SITE_URL',          '{$_POST['installation_url']}');
 
 ALTUM;
 

@@ -1,8 +1,0 @@
-phpBiolinks by AltumCode.com
--------------------------
-
-Website: https://altumco.de/phpbiolinks-buy
-
-Documentation: https://altumco.de/phpbiolinks-docs
-
-Changelog: https://altumco.de/phpbiolinks-buy

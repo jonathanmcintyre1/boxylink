@@ -88,10 +88,13 @@ class BiolinkBlockAjax extends Controller {
             $settings = json_encode([
                 'name' => $biolink_block->settings->name,
                 'image' => $biolink_block->settings->image,
+                'open_in_new_tab' => $biolink_block->settings->open_in_new_tab,
                 'text_color' => $biolink_block->settings->text_color,
                 'background_color' => $biolink_block->settings->background_color,
-                'outline' => $biolink_block->settings->outline,
                 'border_radius' => $biolink_block->settings->border_radius,
+                'border_width' => $biolink_block->settings->border_width,
+                'border_style' => $biolink_block->settings->border_style,
+                'border_color' => $biolink_block->settings->border_color,
                 'animation' => $biolink_block->settings->animation,
                 'animation_runs' => $biolink_block->settings->animation_runs,
                 'icon' => $biolink_block->settings->icon
@@ -295,6 +298,9 @@ class BiolinkBlockAjax extends Controller {
             'image' => $db_image,
             'size' => $_POST['size'],
             'border_radius' => $_POST['border_radius'],
+            'border_width' => 0,
+            'border_style' => 'solid',
+            'border_color' => 'white',
         ]);
 
         /* Database query */
@@ -900,7 +906,7 @@ class BiolinkBlockAjax extends Controller {
 
         /* Check for any errors */
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }
@@ -982,7 +988,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['name'] = trim(Database::clean_string($_POST['name']));
         $_POST['open_in_new_tab'] = isset($_POST['open_in_new_tab']);
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1007,7 +1013,7 @@ class BiolinkBlockAjax extends Controller {
 
         /* Check for any errors */
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }
@@ -1129,6 +1135,9 @@ class BiolinkBlockAjax extends Controller {
         $_POST['biolink_block_id'] = (int) $_POST['biolink_block_id'];
         $_POST['size'] = in_array($_POST['size'], ['75', '100', '125', '150']) ? (int) $_POST['size'] : 125;
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
+        $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
+        $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
 
         if(!$biolink_block = db()->where('biolink_block_id', $_POST['biolink_block_id'])->where('user_id', $this->user->user_id)->getOne('biolinks_blocks')) {
             die();
@@ -1144,6 +1153,9 @@ class BiolinkBlockAjax extends Controller {
             'image' => $db_image,
             'size' => $_POST['size'],
             'border_radius' => $_POST['border_radius'],
+            'border_width' => $_POST['border_width'],
+            'border_style' => $_POST['border_style'],
+            'border_color' => $_POST['border_color'],
         ]);
 
         /* Database query */
@@ -1200,7 +1212,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['name'] = trim(Database::clean_string($_POST['name']));
         $_POST['url'] = !empty($_POST['url']) ? get_slug(Database::clean_string($_POST['url']), '-', false) : false;
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['text_color']) ? '#000' : $_POST['text_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1291,7 +1303,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['amount'] = (int) Database::clean_string($_POST['amount']);
         $_POST['open_in_new_tab'] = isset($_POST['open_in_new_tab']);
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['text_color']) ? '#000' : $_POST['text_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1359,7 +1371,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['biolink_block_id'] = (int) $_POST['biolink_block_id'];
         $_POST['name'] = trim(Database::clean_string($_POST['name']));
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['text_color']) ? '#000' : $_POST['text_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1546,7 +1558,7 @@ class BiolinkBlockAjax extends Controller {
 
             $items[] = [
                 'title' => trim(Database::clean_string($value)),
-                'content' => trim(Database::clean_string($_POST['item_content'][$key])),
+                'content' => trim(filter_var($_POST['item_content'][$key], FILTER_SANITIZE_STRING)),
             ];
         }
 
@@ -1624,7 +1636,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['biolink_block_id'] = (int) $_POST['biolink_block_id'];
         $_POST['name'] = trim(Database::clean_string($_POST['name']));
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1711,7 +1723,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['type'] = in_array($_POST['type'], ['email', 'call', 'sms', 'facetime']) ? Database::clean_string($_POST['type']) : 'email';
         $_POST['value'] = trim(Database::clean_string($_POST['value']));
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1755,7 +1767,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['description'] = trim(Database::clean_string($_POST['description']));
         $_POST['price'] = trim(Database::clean_string($_POST['price']));
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1781,7 +1793,7 @@ class BiolinkBlockAjax extends Controller {
 
         /* Check for any errors */
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }
@@ -1852,7 +1864,7 @@ class BiolinkBlockAjax extends Controller {
         $_POST['location_url'] = trim(Database::clean_string($_POST['location_url']));
         $_POST['name'] = trim(Database::clean_string($_POST['name']));
         $_POST['border_radius'] = in_array($_POST['border_radius'], ['straight', 'round', 'rounded']) ? Database::clean_string($_POST['border_radius']) : 'rounded';
-        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? Database::clean_string($_POST['border_width']) : 0;
+        $_POST['border_width'] = in_array($_POST['border_width'], [0, 1, 2, 3, 4, 5]) ? (int) $_POST['border_width'] : 0;
         $_POST['border_style'] = in_array($_POST['border_style'], ['solid', 'dashed', 'double', 'inset', 'outset']) ? Database::clean_string($_POST['border_style']) : 'solid';
         $_POST['border_color'] = !preg_match('/#([A-Fa-f0-9]{3,4}){1,2}\b/i', $_POST['border_color']) ? '#000' : $_POST['border_color'];
         $_POST['animation'] = in_array($_POST['animation'], require APP_PATH . 'includes/biolink_animations.php') || $_POST['animation'] == 'false' ? Database::clean_string($_POST['animation']) : false;
@@ -1877,7 +1889,7 @@ class BiolinkBlockAjax extends Controller {
 
         /* Check for any errors */
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }
@@ -1954,7 +1966,7 @@ class BiolinkBlockAjax extends Controller {
 
         /* Check for any errors */
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }

@@ -267,8 +267,8 @@
 			"statistics_help"			: "You get access to more advanced statistics for all your links",
 			"custom_backgrounds"		: "<i class=\"fa fa-fw fa-sm fa-fill mr-1\"></i> Custom Backgrounds",
 			"custom_backgrounds_help"	: "You can add your own custom Biolink page backgrounds",
-			"verified"					: "<i class=\"fa fa-fw fa-sm fa-check-circle mr-1\"></i> Verified Checkmark",
-			"verified_help"				: "You will get the verified checkmark for all your biolink pages",
+			"verified"					: "<i class=\"fa fa-fw fa-sm fa-check-circle mr-1\"></i> Verified badge",
+			"verified_help"				: "You will get the verified badge for all your biolink pages",
 			"temporary_url_is_enabled"		: "<i class=\"fa fa-fw fa-sm fa-clock mr-1\"></i> Links scheduling & limiter",
 			"temporary_url_is_enabled_help"	: "The ability to schedule links for when to go live & when to expire based on amount of clicks or date range.",
 			"seo"						: "<i class=\"fa fa-fw fa-sm fa-search-plus mr-1\"></i> SEO Features",
@@ -1100,7 +1100,11 @@
 			"background_type_image"			: "Custom Image",
 			"favicon"						: "Favicon",
 			"favicon_help"					: "Set a custom favicon for your biolink page. png, gif or ico accepted.",
-			"display_verified"				: "Display verified checkmark",
+			"verified_header"				: "Verified",
+			"display_verified"				: "Display verified badge",
+			"verified_location"				: "Location",
+			"verified_location_top"			: "Top",
+			"verified_location_bottom"		: "Bottom",
 			"branding_header"				: "Branding",
 			"display_branding"				: "Display branding",
 			"branding": {
@@ -1269,7 +1273,7 @@
 			"icon"							: "fa fa-fw fa-hashtag",
 			"color"							: "#383eb2",
 			"image_alt"						: "Avatar",
-			"verified"						: "Verified user",
+			"verified"						: "Verified User",
 
 			"blocks": {
 				"link"							: "Link",

@@ -96,12 +96,7 @@ class App {
             $user->plan_is_expired = false;
 
             /* Get current plan proper details */
-            $user->plan = (new Plan(['settings' => $settings]))->get_plan_by_id($user->plan_id);
-
-            /* Check if its a custom plan */
-            if($user->plan->plan_id == 'custom') {
-                $user->plan->settings = $user->plan_settings;
-            }
+            $user->plan = (new Plan())->get_plan_by_id($user->plan_id);
 
             if(!$user->plan || ($user->plan && ((new \DateTime()) > (new \DateTime($user->plan_expiration_date)) && $user->plan_id != 'free') || !$user->plan->status)) {
                 $user->plan_is_expired = true;

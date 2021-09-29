@@ -115,7 +115,7 @@ class AdminPlanUpdate extends Controller {
                     /* Check for any errors */
                     $required_fields = ['name', 'price'];
                     foreach($required_fields as $field) {
-                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                             Alerts::add_field_error($field, language()->global->error_message->empty_field);
                         }
                     }
@@ -154,7 +154,7 @@ class AdminPlanUpdate extends Controller {
                     /* Check for any errors */
                     $required_fields = ['name', 'price', 'custom_button_url'];
                     foreach($required_fields as $field) {
-                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                             Alerts::add_field_error($field, language()->global->error_message->empty_field);
                         }
                     }
@@ -188,7 +188,7 @@ class AdminPlanUpdate extends Controller {
                     /* Check for any errors */
                     $required_fields = ['name'];
                     foreach($required_fields as $field) {
-                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+                        if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                             Alerts::add_field_error($field, language()->global->error_message->empty_field);
                         }
                     }

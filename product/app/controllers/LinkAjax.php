@@ -181,6 +181,7 @@ class LinkAjax extends Controller {
         $type = 'biolink';
         $settings = json_encode([
             'display_verified' => true,
+            'verified_location' => 'top',
             'favicon' => null,
             'background_type' => 'preset',
             'background' => 'one',
@@ -545,6 +546,7 @@ class LinkAjax extends Controller {
 
         $_POST['display_branding'] = (bool) isset($_POST['display_branding']);
         $_POST['display_verified'] = (bool) isset($_POST['display_verified']);
+        $_POST['verified_location'] = in_array($_POST['verified_location'], ['top', 'bottom']) ? Database::clean_string($_POST['verified_location']) : 'top';
         $_POST['branding_name'] = trim(Database::clean_string($_POST['branding_name']));
         $_POST['branding_url'] = trim(Database::clean_string($_POST['branding_url']));
         $_POST['seo_block'] = (bool) isset($_POST['seo_block']);
@@ -566,6 +568,7 @@ class LinkAjax extends Controller {
         /* Set the new settings variable */
         $settings = json_encode([
             'display_verified' => $_POST['display_verified'],
+            'verified_location' => $_POST['verified_location'],
             'background_type' => $_POST['background_type'],
             'background' => $background ? $background : $link->settings->background,
             'favicon' => $image_uploaded_file['favicon'],
@@ -656,7 +659,7 @@ class LinkAjax extends Controller {
         /* Check for any errors */
         $required_fields = ['location_url'];
         foreach($required_fields as $field) {
-            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+            if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                 Response::json(language()->global->error_message->empty_fields, 'error');
                 break 1;
             }

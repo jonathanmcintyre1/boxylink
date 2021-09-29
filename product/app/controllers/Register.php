@@ -54,7 +54,7 @@ class Register extends Controller {
             /* Check for any errors */
             $required_fields = ['name', 'email' ,'password'];
             foreach($required_fields as $field) {
-                if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]))) {
+                if(!isset($_POST[$field]) || (isset($_POST[$field]) && empty($_POST[$field]) && $_POST[$field] != '0')) {
                     Alerts::add_field_error($field, language()->global->error_message->empty_field);
                 }
             }

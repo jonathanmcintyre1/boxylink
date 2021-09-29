@@ -76,28 +76,6 @@
                                 </select>
                             </div>
 
-                            <div <?= $this->user->plan_settings->verified ? null : 'data-toggle="tooltip" title="' . language()->global->info_message->plan_feature_no_access . '"' ?>>
-                                <div class="<?= $this->user->plan_settings->verified ? null : 'container-disabled' ?>">
-                                    <div class="custom-control custom-switch mr-3 mb-3">
-                                        <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                id="display_verified"
-                                                name="display_verified"
-                                            <?= !$this->user->plan_settings->verified ? 'disabled="disabled"': null ?>
-                                            <?= $data->link->settings->display_verified ? 'checked="checked"' : null ?>
-                                        >
-                                        <label class="custom-control-label clickable" for="display_verified"><?= language()->link->settings->display_verified ?></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="settings_text_color"><i class="fa fa-fw fa-paint-brush fa-sm mr-1"></i> <?= language()->link->settings->text_color ?></label>
-                                <input type="hidden" id="settings_text_color" name="text_color" class="form-control" value="<?= $data->link->settings->text_color ?>" required="required" />
-                                <div id="settings_text_color_pickr"></div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="settings_background_type"><i class="fa fa-fw fa-fill fa-sm mr-1"></i> <?= language()->link->settings->background_type ?></label>
                                 <select id="settings_background_type" name="background_type" class="form-control">
@@ -146,7 +124,7 @@
                                             <?php if(is_string($data->link->settings->background) && file_exists(UPLOADS_PATH . 'backgrounds/' . $data->link->settings->background)): ?>
                                                 <img id="background_type_image_preview" src="<?= UPLOADS_FULL_URL . 'backgrounds/' . $data->link->settings->background ?>" data-default-src="<?= UPLOADS_FULL_URL . 'backgrounds/' . $data->link->settings->background ?>" class="link-background-type-image img-fluid" />
                                             <?php endif ?>
-                                            <input id="background_type_image_input" type="file" name="background" accept=".gif, .ico, .png, .jpg, .jpeg, .svg" class="form-control-file" />
+                                            <input id="background_type_image_input" type="file" name="background" accept=".gif, .png, .jpg, .jpeg, .svg" class="form-control-file" />
                                         </div>
                                     </div>
                                 </div>
@@ -177,6 +155,36 @@
                                         <label for="leap_link"><i class="fa fa-fw fa-forward fa-sm mr-1"></i> <?= language()->link->settings->leap_link ?></label>
                                         <input id="leap_link" type="url" class="form-control" name="leap_link" value="<?= $data->link->settings->leap_link ?>" <?= !$this->user->plan_settings->leap_link ? 'disabled="disabled"': null ?> autocomplete="off" />
                                         <small class="form-text text-muted"><?= language()->link->settings->leap_link_help ?></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-block btn-gray-300 my-4" type="button" data-toggle="collapse" data-target="#verified_container" aria-expanded="false" aria-controls="verified_container">
+                                <?= language()->link->settings->verified_header ?>
+                            </button>
+
+                            <div class="collapse" id="verified_container">
+                                <div <?= $this->user->plan_settings->verified ? null : 'data-toggle="tooltip" title="' . language()->global->info_message->plan_feature_no_access . '"' ?>>
+                                    <div class="<?= $this->user->plan_settings->verified ? null : 'container-disabled' ?>">
+                                        <div class="custom-control custom-switch mr-3 mb-3">
+                                            <input
+                                                    type="checkbox"
+                                                    class="custom-control-input"
+                                                    id="display_verified"
+                                                    name="display_verified"
+                                                <?= !$this->user->plan_settings->verified ? 'disabled="disabled"': null ?>
+                                                <?= $data->link->settings->display_verified ? 'checked="checked"' : null ?>
+                                            >
+                                            <label class="custom-control-label clickable" for="display_verified"><?= language()->link->settings->display_verified ?></label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="verified_location"><?= language()->link->settings->verified_location ?></label>
+                                            <select id="verified_location" name="verified_location" class="form-control">
+                                                <option value="top" <?= $data->link->settings->verified_location == 'top' ? 'selected="selected"' : null?>><?= language()->link->settings->verified_location_top ?></option>
+                                                <option value="bottom" <?= $data->link->settings->verified_location == 'bottom' ? 'selected="selected"' : null?>><?= language()->link->settings->verified_location_bottom ?></option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -215,6 +223,12 @@
                                             <input id="branding_url" type="text" class="form-control" name="branding_url" value="<?= $data->link->settings->branding->url ?? '' ?>" />
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settings_text_color"><i class="fa fa-fw fa-paint-brush fa-sm mr-1"></i> <?= language()->link->settings->text_color ?></label>
+                                    <input type="hidden" id="settings_text_color" name="text_color" class="form-control" value="<?= $data->link->settings->text_color ?>" required="required" />
+                                    <div id="settings_text_color_pickr"></div>
                                 </div>
                             </div>
 
@@ -564,14 +578,31 @@
     };
 
     /* Display verified */
-    document.querySelector('#display_verified').addEventListener('change', event => {
-        let display_verified = event.currentTarget.checked;
+    let display_verified = () => {
+        let display_verified = document.querySelector('#display_verified').checked;
+        let verified_location = document.querySelector('#verified_location').value;
+        let biolink_preview_iframe = $('#biolink_preview_iframe');
+
         if(display_verified) {
-            $('#biolink_preview_iframe').contents().find('#link-verified-wrapper').show();
+            switch(verified_location) {
+                case 'top':
+                    biolink_preview_iframe.contents().find(`#link-verified-wrapper-top`).show();
+                    biolink_preview_iframe.contents().find(`#link-verified-wrapper-bottom`).hide();
+                    break;
+
+                case 'bottom':
+                    biolink_preview_iframe.contents().find(`#link-verified-wrapper-top`).hide();
+                    biolink_preview_iframe.contents().find(`#link-verified-wrapper-bottom`).show();
+                    break;
+            }
         } else {
-            $('#biolink_preview_iframe').contents().find('#link-verified-wrapper').hide();
+            biolink_preview_iframe.contents().find(`#link-verified-wrapper-top`).hide();
+            biolink_preview_iframe.contents().find(`#link-verified-wrapper-bottom`).hide();
         }
-    });
+    }
+
+    document.querySelector('#display_verified').addEventListener('change', display_verified);
+    document.querySelector('#verified_location').addEventListener('change', display_verified);
 
     /* Text Color Handler */
     let settings_text_color_pickr = Pickr.create({
@@ -601,7 +632,6 @@
 
     settings_text_color_pickr.on('change', hsva => {
         $('#settings_text_color').val(hsva.toHEXA().toString());
-        $('#biolink_preview_iframe').contents().find('#link-verified-wrapper').css('color', hsva.toHEXA().toString());
         $('#biolink_preview_iframe').contents().find('#branding').css('color', hsva.toHEXA().toString());
     });
 
